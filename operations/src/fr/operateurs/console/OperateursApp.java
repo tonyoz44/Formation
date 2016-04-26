@@ -19,7 +19,8 @@ public class OperateursApp{
 
 		Double nb2=sc2.nextDouble();
 		System.out.println(nb1+"+"+nb2+"="+( nb1 +nb2));
-		
+		sc.close();
+		sc2.close();
 	}
 
 }
