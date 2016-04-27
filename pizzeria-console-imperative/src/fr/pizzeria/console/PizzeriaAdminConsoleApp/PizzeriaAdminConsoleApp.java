@@ -91,10 +91,37 @@ public class PizzeriaAdminConsoleApp {
 		{
 			int tableauSize=getTableau().length;
 			Object[][] pizzas=getTableau();
-			pizzas[7]=new Object[]{ code,nom,prix};
+			pizzas[tableauSize]=new Object[]{ code,nom,prix};
 		}
 					
-					
-					
+		private static void  miseAJourPizza(String code,String nom,double prix)					
+		{
+			int tableauSize=getTableau().length;
+			Object[][] pizzas=getTableau();
+			for(int i=0;i<tableauSize;i++ )
+			{
+				if(code==pizzas[i][0])
+				{
+					pizzas[i]=new Object[]{ code,nom,prix};	
+				}
+			}
+			
+		}
+		
+		private static void  suppresionPizza(String code,String nom,double prix)					
+		{
+			int tableauSize=getTableau().length;
+			Object[][] pizzas=getTableau();
+			Object[][] pizzaNew=null;
+			for(int i=0;i<tableauSize;i++ )
+			{
+				if(code!=pizzas[i][0])
+				{
+					pizzaNew[i]=pizzas[i];
+				}
+				
+			}
+			pizzas=pizzaNew;
+		}
 					
 }
