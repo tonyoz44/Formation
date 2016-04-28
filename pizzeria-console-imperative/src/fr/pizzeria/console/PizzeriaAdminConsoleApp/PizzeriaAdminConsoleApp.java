@@ -108,7 +108,7 @@ public class PizzeriaAdminConsoleApp {
 			
 		}
 		
-		private static void  suppresionPizza(String code,String nom,double prix)					
+		private static void  suppressionPizza(String code,String nom,double prix)					
 		{
 			int tableauSize=getTableau().length;
 			Object[][] pizzas=getTableau();
