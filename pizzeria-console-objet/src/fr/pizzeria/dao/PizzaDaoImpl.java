@@ -1,29 +1,33 @@
 package fr.pizzeria.dao;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoImpl implements IPizzaDao {
 	
-	private Pizza[] pizzas = new Pizza[100];
+	private List<Pizza> pizzas = new ArrayList<Pizza>();
 
 	public PizzaDaoImpl() {
-		pizzas[0] = new Pizza("PEP", "Peperoni", 12.50);
-		pizzas[1] = new Pizza("MAR", "Margherita", 14.00);
-		pizzas[2] = new Pizza("REI", "La Reine", 11.50);
-		pizzas[3] = new Pizza("FRO", "La 4 fromages", 12.00);
-		pizzas[4] = new Pizza("CAN", "La cannibale", 12.50);
-		pizzas[5] = new Pizza("SAV", "La savoyarde", 13.00);
-		pizzas[6] = new Pizza("ORI", "L'orientale", 13.50);
-		pizzas[7] = new Pizza("IND", "L'indienne", 14.00);
+		pizzas.add(new Pizza("PEP", "Peperoni", 12.50));
+		pizzas.add(new Pizza("MAR", "Margherita", 14.00));
+		pizzas.add(new Pizza("REI", "La Reine", 11.50));
+		pizzas.add(new Pizza("FRO", "La 4 fromages", 12.00));
+		pizzas.add(new Pizza("CAN", "La cannibale", 12.50));
+		pizzas.add(new Pizza("SAV", "La savoyarde", 13.00));
+		pizzas.add(new Pizza("ORI", "L'orientale", 13.50));
+		pizzas.add(new Pizza("IND", "L'indienne", 14.00));
 	}
 	
 
 	@Override
-	public Pizza[] findAllPizzas() {
-		Pizza[] resultat = new Pizza[100];
-		System.arraycopy(pizzas, 0, resultat, 0, resultat.length);
+	public List<Pizza> findAllPizzas() {
+
+		List<Pizza> resultat=new ArrayList<Pizza>(pizzas);
+
 		return resultat;
 	}
 
@@ -32,13 +36,13 @@ public class PizzaDaoImpl implements IPizzaDao {
 		boolean placeTrouve = false;
 		int index=0;
 		
-		while(!placeTrouve && index <pizzas.length)
+		while(!placeTrouve && index <pizzas.size())
 		{
-			placeTrouve=pizzas[index]!=null;
+			placeTrouve=pizzas.get(index)!=null;
 			
 			index++;
 		}
-		pizzas[index]=newPizza;
+		pizzas.set(index, newPizza);
 		return placeTrouve;
 	}
 
@@ -48,12 +52,13 @@ public class PizzaDaoImpl implements IPizzaDao {
 		int index=0;
 		boolean test=false;
 		for (Pizza pizza : pizzas) {
-			index++;
+			
 			if(pizza.getCode().equals(codePizza) && pizza!=null)
 			{
-				pizzas[index]=pizza;
+				pizzas.set(index, updatePizza);
 				test=true;
 			}
+			index++;
 		}
 		return test;
 	}
@@ -63,11 +68,23 @@ public class PizzaDaoImpl implements IPizzaDao {
 		
 		boolean test=false;
 		int index=0;
+		Iterator<Pizza> iterator = pizzas.iterator();
+		while (iterator.hasNext()) {
+			Pizza type = (Pizza) iterator.next();
+			if(type != null && type.getCode().equals(codePizza)  )
+			{
+				iterator.remove();
+				test=true;
+			}
+
+
+		}
+		
 		for (Pizza pizza : pizzas) {
 			
 			if(pizza != null && pizza.getCode().equals(codePizza)  )
 			{
-				pizzas[index]=null;
+				pizzas.remove(pizza);
 				test=true;
 			}
 		}

@@ -36,5 +36,10 @@ public class Pizza {
 		return prix;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.nom;
+	}
 	
 }
