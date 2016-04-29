@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.ihm.menu.option.AbstractOptionMenu;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class AjoutPizza extends AbstractOptionMenu {
@@ -30,6 +31,14 @@ public class AjoutPizza extends AbstractOptionMenu {
 		String nom=sc.next();
 		System.out.println("Informer de son  prix");
 		double prix=sc.nextDouble();
+		System.out.println("Informer la catégorie de la pizza");
+		CategoriePizza[] pizzasCategorie = CategoriePizza.values();
+		for (CategoriePizza	 categorie: pizzasCategorie) {
+			System.out.println(categorie.ordinal()+"->"+ categorie.getLibelle());
+		}
+		int valeurSaisi = sc.nextInt();
+		
+		pizzaNew.setCategorie(pizzasCategorie[valeurSaisi]);
 		pizzaNew.setCode(code);
 		pizzaNew.setNom(nom);
 		pizzaNew.setPrix(prix);

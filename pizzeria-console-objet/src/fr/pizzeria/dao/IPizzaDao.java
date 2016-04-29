@@ -10,5 +10,5 @@ public interface IPizzaDao {
 	boolean savePizza(Pizza newPizza);
 	boolean updatePizza(String codePizza, Pizza updatePizza);
 	boolean deletePizza(String codePizza);
-
+	
 }
