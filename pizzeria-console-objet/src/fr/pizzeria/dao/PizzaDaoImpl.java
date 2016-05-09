@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -44,12 +45,12 @@ public class PizzaDaoImpl implements IPizzaDao {
 			
 			index++;
 		}
-		pizzas.set(index, newPizza);
+		pizzas.add(newPizza);
 		return placeTrouve;
 	}
 
 	@Override
-	public boolean updatePizza(String codePizza, Pizza updatePizza) {
+	public boolean updatePizza(String codePizza, Pizza updatePizza) throws UpdatePizzaException{
 		
 		int index=0;
 		boolean test=false;
@@ -61,6 +62,10 @@ public class PizzaDaoImpl implements IPizzaDao {
 				test=true;
 			}
 			index++;
+		}
+		if (test==false)
+		{
+			throw new UpdatePizzaException();
 		}
 		return test;
 	}

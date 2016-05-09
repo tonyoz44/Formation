@@ -3,6 +3,7 @@ package fr.pizzeria.ihm.menu.option;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -20,7 +21,7 @@ public MettreAJourPizzas(IPizzaDao pizzaDao, Scanner sc)
 
 
 @Override
-public boolean execute() {
+public boolean execute() throws UpdatePizzaException {
 //	Pizza pizzaNew;
 	System.out.println("Donner le code de la pizza à mettre à jour");
 	String code=sc.next();

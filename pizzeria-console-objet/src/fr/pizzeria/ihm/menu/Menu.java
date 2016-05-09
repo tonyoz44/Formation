@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.ihm.menu.option.AbstractOptionMenu;
 import fr.pizzeria.ihm.menu.option.ListerPizzaOptionMenu;
 import fr.pizzeria.ihm.menu.option.MettreAJourPizzas;
@@ -47,7 +48,12 @@ public class Menu {
 			}
 
 			int saisie = sc.nextInt();
-			continuer = options.get(saisie).execute();
+			try {
+				continuer = options.get(saisie).execute();
+			} catch (UpdatePizzaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 
