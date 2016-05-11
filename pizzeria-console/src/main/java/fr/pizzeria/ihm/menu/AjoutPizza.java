@@ -32,7 +32,7 @@ public class AjoutPizza extends AbstractOptionMenu {
 		String nom=sc.next();
 		System.out.println("Informer de son  prix");
 		double prix=sc.nextDouble();
-		System.out.println("Informer la catégorie de la pizza");
+		System.out.println("Informer la categorie de la pizza");
 		CategoriePizza[] pizzasCategorie = CategoriePizza.values();
 		for (CategoriePizza	 categorie: pizzasCategorie) {
 			System.out.println(categorie.ordinal()+"->"+ categorie.getLibelle());

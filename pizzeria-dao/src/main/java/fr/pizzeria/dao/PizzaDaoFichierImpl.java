@@ -41,6 +41,7 @@ public class PizzaDaoFichierImpl implements IPizzaDao {
 			} catch (IOException e) {
 				throw new DaoException(e);
 			}
+
 	}
 
 	@Override
