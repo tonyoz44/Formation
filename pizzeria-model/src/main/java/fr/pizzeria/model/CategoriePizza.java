@@ -13,7 +13,7 @@ VIANDE("Viande"),POISSON("Poisson"),SANS_VIANDE("Sans Viande");
 private String libelle;
 
 private CategoriePizza(String arg0) {
-	this.libelle=arg0;
+	this.libelle=arg;
 }
 
 public String getLibelle() {
