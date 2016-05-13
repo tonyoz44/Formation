@@ -1,6 +1,7 @@
 package fr.pizzeria.model;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -132,8 +133,8 @@ public class Pizza {
 
 
 
-	public void setPrix(double prix) {
-		this.prix = prix;
+	public void setPrix(double bigDecimal) {
+		this.prix = bigDecimal;
 	}
 	public Pizza(String code, String nom, double prix,CategoriePizza categorie) {
 		super();

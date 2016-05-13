@@ -1,5 +1,8 @@
 package fr.pizzeria.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -14,7 +17,12 @@ import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoImpl implements IPizzaDao {
 	
+	
 	private List<Pizza> pizzas = new ArrayList<Pizza>();
+	
+
+	
+	
 
 	public PizzaDaoImpl() {
 		pizzas.add(new Pizza("PEP", "Peperoni", 12.50,CategoriePizza.VIANDE));
