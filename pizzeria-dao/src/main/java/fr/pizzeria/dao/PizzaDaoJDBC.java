@@ -198,4 +198,10 @@ public class PizzaDaoJDBC implements IPizzaDao {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public void saveAllPizzas(List<Pizza> listPizzas, int nb) throws DaoException {
+		// TODO Auto-generated method stub
+		
+	}
 }

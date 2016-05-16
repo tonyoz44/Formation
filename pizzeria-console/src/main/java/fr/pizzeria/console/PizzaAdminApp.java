@@ -3,6 +3,7 @@ package fr.pizzeria.console;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -37,6 +38,7 @@ public class PizzaAdminApp {
 			System.out.println("DAO Jdbc");
 		
 		case 3:
+			java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 			System.out.println("JPA ");
 			EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("pizzeria-console");
 			lancerApplication(new PizzaDaoJpa(emf));

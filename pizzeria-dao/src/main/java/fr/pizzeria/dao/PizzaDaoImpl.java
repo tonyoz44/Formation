@@ -12,6 +12,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -115,6 +116,13 @@ public class PizzaDaoImpl implements IPizzaDao {
 
 		
 		return 	test;
+	}
+
+
+	@Override
+	public void saveAllPizzas(List<Pizza> listPizzas, int nb) throws DaoException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

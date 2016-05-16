@@ -8,33 +8,48 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @NamedQueries({
-@NamedQuery(name="pizza.findAll", query="select p from Pizza p")})
+	@NamedQuery(name="pizza.findAll", query="select p from Pizza p"),
+	@NamedQuery(name="pizza.findPizza", query="select p from Pizza p where p.code=:code")
+})
 public class Pizza {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	public Integer getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	@ToString(uppercase = true)
-	@Column()
+	@Column(name="code_pizza")
 	private String code;
 	private String nom;
 	@ToString(uppercase = true)
 	private double prix;
 	public static int nbPizzas;
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	CategoriePizza categorie;
 	
 	public CategoriePizza getCategorie() {
