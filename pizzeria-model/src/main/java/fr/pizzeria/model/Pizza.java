@@ -8,19 +8,33 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+@Entity
+@NamedQueries({
+@NamedQuery(name="pizza.findAll", query="select p from Pizza p")})
 public class Pizza {
 
-	@SuppressWarnings("unused")
-	private int id;
+	@Id
+	@GeneratedValue
+	private Integer id;
 	@ToString(uppercase = true)
+	@Column()
 	private String code;
 	private String nom;
 	@ToString(uppercase = true)
 	private double prix;
 	public static int nbPizzas;
+	@Enumerated
 	CategoriePizza categorie;
 	
 	public CategoriePizza getCategorie() {

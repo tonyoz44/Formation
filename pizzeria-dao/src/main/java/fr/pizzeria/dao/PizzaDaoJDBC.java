@@ -18,7 +18,7 @@ import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class PizzaDaoJDBC {
+public class PizzaDaoJDBC implements IPizzaDao {
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 
 	private static List<Pizza> pizzas = new ArrayList<Pizza>();
@@ -57,7 +57,7 @@ public class PizzaDaoJDBC {
 
 	}
 
-	public int savePizza(Pizza newPizza) throws SQLException {
+	public boolean savePizza(Pizza newPizza) throws DaoException{
 		boolean placeTrouve = false;
 		int index;
 		try (Connection connection = connection();) {
@@ -67,8 +67,11 @@ public class PizzaDaoJDBC {
 			createStatement.setString(2, newPizza.getCode());
 			createStatement.setDouble(3, newPizza.getPrix());
 			createStatement.setString(4, newPizza.getCategorie().toString().toUpperCase());
-
-			return createStatement.executeUpdate();
+			createStatement.executeUpdate();
+			return true;
+		}
+		catch (Exception e) {
+			throw new DaoException();
 		}
 	}
 
@@ -187,4 +190,12 @@ public class PizzaDaoJDBC {
 	// return false;
 	// }
 	//
+
+
+
+	@Override
+	public boolean deletePizza(String codePizza) throws DaoException {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
