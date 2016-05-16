@@ -1,5 +1,6 @@
 package fr.pizzeria.ihm.menu;
 
+import java.math.BigDecimal;
 import java.sql.Savepoint;
 import java.util.Scanner;
 
@@ -31,7 +32,7 @@ public class AjoutPizza extends AbstractOptionMenu {
 		System.out.println("Informer de son  nom");
 		String nom=sc.next();
 		System.out.println("Informer de son  prix");
-		double prix=sc.nextDouble();
+		BigDecimal prix=sc.nextBigDecimal();
 		System.out.println("Informer la categorie de la pizza");
 		CategoriePizza[] pizzasCategorie = CategoriePizza.values();
 		for (CategoriePizza	 categorie: pizzasCategorie) {

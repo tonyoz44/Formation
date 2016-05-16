@@ -47,7 +47,7 @@ public class Pizza {
 	private String code;
 	private String nom;
 	@ToString(uppercase = true)
-	private double prix;
+	private BigDecimal prix;
 	public static int nbPizzas;
 	@Enumerated(EnumType.STRING)
 	CategoriePizza categorie;
@@ -162,10 +162,10 @@ public class Pizza {
 
 
 
-	public void setPrix(double bigDecimal) {
+	public void setPrix(BigDecimal bigDecimal) {
 		this.prix = bigDecimal;
 	}
-	public Pizza(String code, String nom, double prix,CategoriePizza categorie) {
+	public Pizza(String code, String nom, BigDecimal prix,CategoriePizza categorie) {
 		super();
 		this.code = code;
 		this.nom = nom;
@@ -178,7 +178,7 @@ public class Pizza {
 	public String getNom() {
 		return nom;
 	}
-	public double getPrix() {
+	public BigDecimal getPrix() {
 		return prix;
 	}
 	

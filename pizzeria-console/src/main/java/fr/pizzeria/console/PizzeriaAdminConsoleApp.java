@@ -1,5 +1,6 @@
 package fr.pizzeria.console;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 import fr.pizzeria.model.Pizza;
@@ -12,18 +13,18 @@ public class PizzeriaAdminConsoleApp {
 
 	private static Pizza[] getTableauPizzas() {
 		Pizza[] pizzas = new Pizza[100];
-		pizzas[0] = creerObjetPizza("PEP", "Peperoni", 12.50);
-		pizzas[1] = creerObjetPizza( "MAR", "Margherita", 14.00);
-		pizzas[2] = creerObjetPizza("REI", "La Reine", 11.50);
-		pizzas[3] = creerObjetPizza("FRO", "La 4 fromages", 12.00);
-		pizzas[4] = creerObjetPizza("CAN", "La cannibale", 12.50);
-		pizzas[5] = creerObjetPizza("SAV", "La savoyarde", 13.00);
-		pizzas[6] = creerObjetPizza("ORI", "L'orientale", 13.50);
-		pizzas[7] = creerObjetPizza("IND", "L'indienne", 14.00);
+		pizzas[0] = creerObjetPizza("PEP", "Peperoni", new BigDecimal(50));
+		pizzas[1] = creerObjetPizza( "MAR", "Margherita", new BigDecimal( 14.00));
+		pizzas[2] = creerObjetPizza("REI", "La Reine",  new BigDecimal(11.50));
+		pizzas[3] = creerObjetPizza("FRO", "La 4 fromages", new BigDecimal( 12.00));
+		pizzas[4] = creerObjetPizza("CAN", "La cannibale", new BigDecimal( 12.50));
+		pizzas[5] = creerObjetPizza("SAV", "La savoyarde", new BigDecimal(13.00));
+		pizzas[6] = creerObjetPizza("ORI", "L'orientale", new BigDecimal( 13.50));
+		pizzas[7] = creerObjetPizza("IND", "L'indienne", new BigDecimal( 14.00));
 		return pizzas;
 	}
 	
-	private static Pizza creerObjetPizza(String code, String nom, double prix) {
+	private static Pizza creerObjetPizza(String code, String nom, BigDecimal prix) {
 		Pizza p = new Pizza();
 		p.setCode(code);
 		p.setNom( nom);
@@ -158,7 +159,7 @@ public class PizzeriaAdminConsoleApp {
 		System.out.println("Veuillez saisir le nom (sans espace)");
 		newPizza.setNom(sc.next());
 		System.out.println("Veuillez saisir le prix");
-		newPizza.setPrix(sc.nextDouble());
+		newPizza.setPrix(sc.nextBigDecimal());
 		return newPizza;
 	}
 

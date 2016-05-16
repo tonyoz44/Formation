@@ -1,6 +1,7 @@
 package fr.pizzeria.dao;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
@@ -41,7 +42,7 @@ public class PizzaDaoJDBC implements IPizzaDao {
 			while (executeQuery.next()) {
 
 				pizzaRecup.setNom(executeQuery.getString("NOM"));
-				pizzaRecup.setPrix(executeQuery.getDouble("PRIX"));
+				pizzaRecup.setPrix(executeQuery.getBigDecimal("PRIX"));
 				pizzaRecup.setCategorie(CategoriePizza.valueOf(executeQuery.getString("CATEGORIE").toUpperCase()));
 				pizzaRecup.setCode(executeQuery.getString("CODE_PIZZA"));
 				System.out.println("[ name=" + pizzaRecup.getNom() + " price=" + pizzaRecup.getPrix() + "categorie"
@@ -65,7 +66,7 @@ public class PizzaDaoJDBC implements IPizzaDao {
 
 			createStatement.setString(1, newPizza.getNom());
 			createStatement.setString(2, newPizza.getCode());
-			createStatement.setDouble(3, newPizza.getPrix());
+			createStatement.setBigDecimal(3, newPizza.getPrix());
 			createStatement.setString(4, newPizza.getCategorie().toString().toUpperCase());
 			createStatement.executeUpdate();
 			return true;
@@ -146,7 +147,7 @@ public class PizzaDaoJDBC implements IPizzaDao {
 			Pizza pizza = new Pizza();
 			pizza.setNom("pizzaya");
 			pizza.setCode("PIZ");
-			pizza.setPrix(12.8);
+			pizza.setPrix(new BigDecimal(12.8));
 			pizza.setCategorie(CategoriePizza.POISSON);
 			imple.savePizza(pizza);
 
@@ -164,7 +165,7 @@ public class PizzaDaoJDBC implements IPizzaDao {
 						String ligne = Files.readAllLines(path).get(0);
 						String[] ligneTab = ligne.split(";");
 						p.setNom(ligneTab[0]);
-						p.setPrix(Double.valueOf(ligneTab[1]));
+						p.setPrix(new BigDecimal(ligneTab[1]));
 						p.setCategorie(CategoriePizza.valueOf(ligneTab[2]));
 					} catch (Exception e) {
 						e.printStackTrace();

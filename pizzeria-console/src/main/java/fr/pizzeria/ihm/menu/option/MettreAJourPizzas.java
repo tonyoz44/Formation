@@ -1,5 +1,6 @@
 package fr.pizzeria.ihm.menu.option;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
@@ -30,7 +31,7 @@ public boolean execute() {
 	System.out.println("Informer de son nouveau nom");
 	String nom=sc.next();
 	System.out.println("Informer de son nouveau prix");
-	double prix=sc.nextDouble();
+	BigDecimal prix=sc.nextBigDecimal();
 	
 	System.out.println("Informer la catégorie de la pizza");
 	CategoriePizza[] pizzasCategorie = CategoriePizza.values();

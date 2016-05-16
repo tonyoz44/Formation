@@ -81,7 +81,7 @@ public class PizzaDaoJpa implements IPizzaDao {
 			em.close();
 		}
 		
-		return false;
+		return true;
 	}
 
 	@Override
@@ -103,7 +103,7 @@ public class PizzaDaoJpa implements IPizzaDao {
 			em.close();
 		}
 		
-		return false;
+		return true;
 	}
 
 	@Override

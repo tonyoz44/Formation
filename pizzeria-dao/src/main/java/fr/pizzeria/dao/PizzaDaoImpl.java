@@ -1,5 +1,6 @@
 package fr.pizzeria.dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,15 +27,15 @@ public class PizzaDaoImpl implements IPizzaDao {
 	
 
 	public PizzaDaoImpl() {
-		pizzas.add(new Pizza("PEP", "Peperoni", 12.50,CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("MAR", "Margherita", 14.00,CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("REI", "La Reine", 11.50,CategoriePizza.SANS_VIANDE));
-		pizzas.add(new Pizza("FRO", "La 4 fromages", 12.00,CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("CAN", "La cannibale", 12.50,CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("SAV", "La savoyarde", 13.00,CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("ORI", "L'orientale", 13.50,CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("IND", "L'indienne", 14.00,CategoriePizza.VIANDE));
-		pizzas.add(new Pizza("SAU", "Saumon", 14.00,CategoriePizza.POISSON));
+		pizzas.add(new Pizza("PEP", "Peperoni",BigDecimal.valueOf(12.50),CategoriePizza.VIANDE));
+		pizzas.add(new Pizza("MAR", "Margherita",BigDecimal.valueOf( 14.00),CategoriePizza.VIANDE));
+		pizzas.add(new Pizza("REI", "La Reine", BigDecimal.valueOf(11.50),CategoriePizza.SANS_VIANDE));
+		pizzas.add(new Pizza("FRO", "La 4 fromages",BigDecimal.valueOf( 12.00),CategoriePizza.VIANDE));
+		pizzas.add(new Pizza("CAN", "La cannibale",BigDecimal.valueOf( 12.50),CategoriePizza.VIANDE));
+		pizzas.add(new Pizza("SAV", "La savoyarde",BigDecimal.valueOf( 13.00),CategoriePizza.VIANDE));
+		pizzas.add(new Pizza("ORI", "L'orientale",BigDecimal.valueOf( 13.50),CategoriePizza.VIANDE));
+		pizzas.add(new Pizza("IND", "L'indienne",BigDecimal.valueOf( 14.00),CategoriePizza.VIANDE));
+		pizzas.add(new Pizza("SAU", "Saumon",BigDecimal.valueOf( 14.00),CategoriePizza.POISSON));
 	}
 	
 
