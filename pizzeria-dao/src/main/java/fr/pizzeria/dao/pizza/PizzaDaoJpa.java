@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.pizza;
 
 import java.util.Comparator;
 import java.util.List;
@@ -29,13 +29,6 @@ public class PizzaDaoJpa implements IPizzaDao {
 		emfactory=emf;
 	}
 
-//	@Override
-//	public List<Pizza> findAllPiz1zas() throws DaoException {
-//		EntityManager em = emfactory.createEntityManager();
-//		List<Pizza> resultList = em.createNamedQuery("pizza.findAll",Pizza.class).getResultList();
-//		em.close();
-//		return resultList;
-//	}
 	@Override                                                                                     
 	public List<Pizza> findAllPizzas() throws DaoException {                                      
 		EntityManager em = emfactory.createEntityManager();                                       

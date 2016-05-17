@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -31,6 +36,8 @@ public class Pizza {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	private String url_image;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -38,8 +45,42 @@ public class Pizza {
 
 
 
-	public void setId(Integer id) {
-		this.id = id;
+
+
+
+
+
+	/**
+	 * @param url_image
+	 * @param code
+	 * @param nom
+	 * @param prix
+	 * @param categorie
+	 */
+	public Pizza(String url_image, String code, String nom, BigDecimal prix, CategoriePizza categorie) {
+		this.url_image = url_image;
+		this.code = code;
+		this.nom = nom;
+		this.prix = prix;
+		this.categorie = categorie;
+	}
+
+
+	/**
+	 * @return the url_image
+	 */
+	public String getUrl_image() {
+		return url_image;
+	}
+
+
+
+
+	/**
+	 * @param url_image the url_image to set
+	 */
+	public void setUrl_image(String url_image) {
+		this.url_image = url_image;
 	}
 
 	@ToString(uppercase = true)
@@ -51,7 +92,12 @@ public class Pizza {
 	public static int nbPizzas;
 	@Enumerated(EnumType.STRING)
 	CategoriePizza categorie;
-	
+	@ManyToMany
+	@JoinTable(name="commandePizza",joinColumns=
+	@JoinColumn(name="idPizza",referencedColumnName="ID"),
+	inverseJoinColumns=
+	@JoinColumn(name="idCommande",referencedColumnName="ID"))
+	Set<Commande> listesCommande;
 	public CategoriePizza getCategorie() {
 		return categorie;
 	}
@@ -165,13 +211,7 @@ public class Pizza {
 	public void setPrix(BigDecimal bigDecimal) {
 		this.prix = bigDecimal;
 	}
-	public Pizza(String code, String nom, BigDecimal prix,CategoriePizza categorie) {
-		super();
-		this.code = code;
-		this.nom = nom;
-		this.prix = prix;
-		this.categorie=categorie;
-	}
+
 	public String getCode() {
 		return code;
 	}

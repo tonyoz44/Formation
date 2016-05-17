@@ -5,7 +5,7 @@ package fr.pizzeria.ihm.menu;
 
 import java.util.Scanner;
 
-import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.pizza.IPizzaDao;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.ihm.menu.option.AbstractOptionMenu;
 

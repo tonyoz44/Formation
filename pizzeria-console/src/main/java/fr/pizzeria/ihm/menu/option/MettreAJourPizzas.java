@@ -3,7 +3,7 @@ package fr.pizzeria.ihm.menu.option;
 import java.math.BigDecimal;
 import java.util.Scanner;
 
-import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.pizza.IPizzaDao;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
@@ -41,7 +41,7 @@ public boolean execute() {
 	int valeurSaisi = sc.nextInt();
 	
 	
-	Pizza pizzaNew=new Pizza(code,nom,prix,pizzasCategorie[valeurSaisi]);
+	Pizza pizzaNew=new Pizza(null,code,nom,prix,pizzasCategorie[valeurSaisi]);
 	boolean reponse = false;
 	try {
 		reponse = pizzaDao.updatePizza(code,pizzaNew );

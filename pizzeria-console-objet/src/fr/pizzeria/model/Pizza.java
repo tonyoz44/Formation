@@ -2,7 +2,6 @@ package fr.pizzeria.model;
 
 import java.lang.reflect.Field;
 
-@Entity
 public class Pizza {
 
 	@SuppressWarnings("unused")

@@ -1,6 +1,6 @@
 package fr.pizzeria.ihm.menu.option;
 
-import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.pizza.IPizzaDao;
 
 public abstract class AbstractOptionMenu {
 	private String libelle;

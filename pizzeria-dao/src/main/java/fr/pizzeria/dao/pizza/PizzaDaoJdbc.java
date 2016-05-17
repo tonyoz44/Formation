@@ -1,4 +1,4 @@
-package fr.pizzeria.dao;
+package fr.pizzeria.dao.pizza;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -15,20 +15,29 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManagerFactory;
+
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
-public class PizzaDaoJDBC implements IPizzaDao {
-	private static final String DRIVER = "com.mysql.jdbc.Driver";
-
-	private static List<Pizza> pizzas = new ArrayList<Pizza>();
-	private static final String REPERTOIRE_DATA = "src/main/resources/data";
-	private static Connection connection() throws SQLException {
+public class PizzaDaoJdbc implements IPizzaDao {
+	private  final String DRIVER = "com.mysql.jdbc.Driver";
+	private EntityManagerFactory emf;
+	private  List<Pizza> pizzas = new ArrayList<Pizza>();
+	private  final String REPERTOIRE_DATA = "src/main/resources/data";
+	private  Connection connection() throws SQLException {
 		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzeria", "anthony", "admin");
 		connection.setAutoCommit(false);
 		return connection;
 
+	}
+
+	/**
+	 * @param emf
+	 */
+	public PizzaDaoJdbc(EntityManagerFactory emf) {
+		this.emf = emf;
 	}
 
 	public List<Pizza> findAllPizzas() throws DaoException {
@@ -80,15 +89,7 @@ public class PizzaDaoJDBC implements IPizzaDao {
 
 		int index = 0;
 		boolean test = false;
-		// for (Pizza pizza : pizzas) {
-		//
-		// if(pizza.getCode().equals(codePizza) && pizza!=null)
-		// {
-		// pizzas.set(index, updatePizza);
-		// test=true;
-		// }
-		// index++;
-		// }
+
 
 		Function<Pizza, Pizza> test1 = pizzaCherche -> pizzaCherche.getCode().equals(codePizza) ? updatePizza
 				: pizzaCherche;
@@ -97,64 +98,8 @@ public class PizzaDaoJDBC implements IPizzaDao {
 		return test;
 	}
 
-	public static void main(String args[]) throws DaoException, SQLException {
-		try {
-			Class.forName(DRIVER);
 
-		} catch (ClassNotFoundException e1) {
-
-			e1.printStackTrace();
-		}
-		
-			connection();
-			PizzaDaoJDBC imple = new PizzaDaoJDBC();
-			try {
-				imple.findAllPizzas();
-			} catch (DaoException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			List<Pizza>po =importation();
-			for (Pizza pizza : po) {
-				System.out.println(pizza.getCode());
-			}
-			
-			List<List<Pizza>> partition = org.apache.commons.collections4.ListUtils.partition(po, 3);
-			PizzaDaoJDBC pojdbc=new PizzaDaoJDBC();
-			for (List<Pizza> list : partition) 
-			{
-				try(Connection connection=connection())
-				{
-					try{
-					for (Pizza pizza : list) {
-						pojdbc.savePizza(pizza);
-					}
-					
-					connection.commit();}
-					catch(SQLException e)
-					{
-						connection.rollback();
-						System.out.println("erreur");
-					}
-					
-				}	
-			}
-	
-			
-				
-			
-			
-			Pizza pizza = new Pizza();
-			pizza.setNom("pizzaya");
-			pizza.setCode("PIZ");
-			pizza.setPrix(new BigDecimal(12.8));
-			pizza.setCategorie(CategoriePizza.POISSON);
-			imple.savePizza(pizza);
-
-
-
-	}
-	public static List<Pizza> importation() throws DaoException
+	public  List<Pizza> importation() throws DaoException
 	{
 		try {
 			return Files.list(Paths.get(REPERTOIRE_DATA))
@@ -178,19 +123,7 @@ public class PizzaDaoJDBC implements IPizzaDao {
 			throw new DaoException(e);
 		}
 	}
-	//
-	// @Override
-	// public boolean savePizza(Pizza newPizza) throws DaoException {
-	// // TODO Auto-generated method stub
-	// return false;
-	// }
-	//
-	// @Override
-	// public boolean deletePizza(String codePizza) throws DaoException {
-	// // TODO Auto-generated method stub
-	// return false;
-	// }
-	//
+
 
 
 
