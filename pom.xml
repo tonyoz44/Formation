@@ -10,6 +10,7 @@
 		<module>pizzeria-dao</module>
 		<module>pizzeria-model</module>
 		<module>pizzeria-console</module>
+		<module>pizzeria-admin-app</module>
 	</modules>
 
 	<properties>
@@ -39,7 +40,12 @@
 				<artifactId>pizzeria-dao</artifactId>
 				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>${project.groupId}</groupId>
+				<artifactId>pizzeria-admin-app</artifactId>
+				<version>${project.version}</version>
 
+			</dependency>
 			<dependency>
 				<groupId>com.github.stefanbirkner</groupId>
 				<artifactId>system-rules</artifactId>
@@ -84,9 +90,13 @@
 				<version>5.1.0.Final</version>
 				<scope>runtime</scope>
 			</dependency>
-
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>javax.servlet-api</artifactId>
+				<version>3.1.0</version>
+				<scope>provided</scope>
+			</dependency>
 		</dependencies>
-
 	</dependencyManagement>
 	<dependencies>
 		<dependency>
