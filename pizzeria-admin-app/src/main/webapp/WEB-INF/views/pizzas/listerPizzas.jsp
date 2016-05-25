@@ -1,10 +1,12 @@
 <%@page import="fr.pizzeria.model.Pizza"%>
 <%@page import="java.util.List"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" isELIgnored="false"%>
 <!DOCTYPE html ">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>listePizzas</title>
 <!-- Latest compiled and minified CSS -->
@@ -39,21 +41,16 @@
   </div>
 
 	<table class="table table-striped">
-		<%
-			List<Pizza> listPizzas = (List<Pizza>) request.getAttribute("ListePizzas");
-			for (Pizza pizza : listPizzas) {
-		%>
+		
+
+		     <c:forEach var="pizza" items="${ListePizzas}">
 		<tr>
-			<td><%=pizza.getCode()%>
-			<td><%=pizza.getCategorie()%>
-			<td><%=pizza.getId()%>
-			<td><%=pizza.getNom()%>
-			<td><%=pizza.getPrix()%>
-			<a  class="btn btn-primary" formaction=<%=request.getContextPath()%>"/pizzas/edit?code='<%=pizza.getCode() %>'">Default</button>
+			<td>${pizza.nom} </td>
+ 			<td>${pizza.categorie}</td>
+ 			<td>${pizza.prix}</td>
+            <td><a  class="btn btn-primary" href="<c:url value="/pizzas/edit?code=${pizza.code}"/>">Default</a></td>
 		</tr>
-		<%
-			}
-		%>
+		</c:forEach>
 </table>
 </body>
 </html>

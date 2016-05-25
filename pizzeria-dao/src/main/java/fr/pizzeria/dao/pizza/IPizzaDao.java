@@ -7,6 +7,7 @@ import fr.pizzeria.model.Pizza;
 
 public interface IPizzaDao  {
 	
+	static IPizzaDao pizzadao=new PizzaDaoImpl();
 	List<Pizza> findAllPizzas() throws DaoException;
 	boolean savePizza(Pizza newPizza)throws DaoException;
 	boolean updatePizza(String codePizza, Pizza updatePizza)throws DaoException;

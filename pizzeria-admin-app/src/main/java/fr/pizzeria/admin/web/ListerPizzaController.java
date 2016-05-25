@@ -23,7 +23,7 @@ import fr.pizzeria.model.Pizza;
  */
 public class ListerPizzaController extends HttpServlet {
 
-	IPizzaDao pizzaDao=new PizzaDaoImpl();
+	IPizzaDao pizzaDao=IPizzaDao.pizzadao;
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
