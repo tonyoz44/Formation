@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,7 @@ import fr.pizzeria.model.Pizza;
  * @author ETY
  *
  */
+ @WebServlet("/api/servlet/pizzas")
 public class ServletListePizza extends HttpServlet {
 
 	private IPizzaDao pizzaDao =new PizzaDaoImpl();

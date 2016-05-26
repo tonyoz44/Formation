@@ -47,9 +47,9 @@ Pizza pizza=(Pizza)request.getAttribute("pizza");
         <label class="col-xs-3 control-label">Size</label>
         <div class="col-xs-5 selectContainer">
             <select class="form-control" name="categorie">
-                <option value="${CategoriePizza.POISSON}">Poisson</option>
-                <option value="${CategoriePizza.VIANDE}">Viande</option>
-                <option value="${CategoriePizza.SANS_VIANDE}">Sans viande</option>
+                <option value="POISSON">Poissons</option>
+                <option value="VIANDE">Viande</option>
+                <option value="SANS_VIANDE">Sans viande</option>
             </select>
         </div>
     </div>

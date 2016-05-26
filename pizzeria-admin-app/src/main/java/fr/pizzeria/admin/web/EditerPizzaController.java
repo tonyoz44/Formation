@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import javax.inject.Inject;
 import javax.servlet.DispatcherType;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.pizzeria.admin.metier.PizzaService;
 import fr.pizzeria.dao.pizza.IPizzaDao;
 import fr.pizzeria.dao.pizza.PizzaDaoImpl;
 import fr.pizzeria.exception.DaoException;
@@ -30,7 +32,7 @@ import fr.pizzeria.model.Pizza;
 @WebServlet("/pizzas/edit")
 public class EditerPizzaController extends HttpServlet {
 
-	IPizzaDao pizzaDao=IPizzaDao.pizzadao;
+	@Inject private PizzaService pizzaService;
 	/* (non-Javadoc)
 	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
 	 */
@@ -43,7 +45,7 @@ public class EditerPizzaController extends HttpServlet {
 		req.setAttribute("code", code);
 
 		try {
-			allPizzas = pizzaDao.findAllPizzas();
+			allPizzas = pizzaService.findAllPizzas();
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -73,7 +75,7 @@ public class EditerPizzaController extends HttpServlet {
 		Pizza updatePizza=new Pizza(null,  code,  nom, prix, categorie);
 		
 		try {
-			pizzaDao.updatePizza(code, updatePizza);
+			pizzaService.updatePizza(code, updatePizza);
 			resp.sendRedirect("list");
 			
 		} catch (DaoException e) {
