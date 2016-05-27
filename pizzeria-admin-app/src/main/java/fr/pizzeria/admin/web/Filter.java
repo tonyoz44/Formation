@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class Filter
  */
-@WebFilter(urlPatterns = { "/*" },description = "filtre")
+@WebFilter(urlPatterns = { "/pizzas/*" },description = "filtre")
 public class Filter implements javax.servlet.Filter {
 
 	private static final ServletResponse HttpServletRequest = null;

@@ -6,17 +6,16 @@ package fr.pizzeria.admin.metier;
 import java.util.Comparator;
 import java.util.List;
 
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.apache.commons.collections4.ListUtils;
 
 import fr.pizzeria.dao.pizza.IPizzaDao;
-import fr.pizzeria.dao.pizza.PizzaDaoImpl;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
 
@@ -24,88 +23,82 @@ import fr.pizzeria.model.Pizza;
  * @author ETY
  *
  */
+@Stateless
 public class PizzaService {
 
-	EntityManagerFactory emfactory;
+	@Inject private IPizzaDao pizzaDao;
+	 
+	@PersistenceContext(unitName="pizzeriaAdmin") private EntityManager em;
 	
-	public PizzaDaoJpa(EntityManagerFactory emf) {
-		emfactory=emf;
-	}
 
-	@Override                                                                                     
-	public List<Pizza> findAllPizzas() throws DaoException {                                      
-		EntityManager em = emfactory.createEntityManager();                                       
-		TypedQuery<Pizza> query = em.createQuery("select p from Pizza p", Pizza.class);
-		List<Pizza> results=query.getResultList();
-		em.close();                                                                               
-		return results;                                                                        
+
+	public List<Pizza> findAllPizzas() throws DaoException {  
+		List<Pizza> listPizza;
+		try{
+		 listPizza = em.createQuery("SELECT p FROM Pizza p", Pizza.class).getResultList();
+		}
+		catch(Exception e)
+		{
+		throw new DaoException();	
+		}
+	return listPizza;                                                                               
+                                                                      
 	}                                                                                             
 	                                                                                              
 	
 
-	@Override
 	public boolean savePizza(Pizza newPizza) throws DaoException {
-		EntityManager em = emfactory.createEntityManager();
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
-		em.persist(newPizza);
-		transaction.commit();
-		em.close();
+
+		 	try {
+		 		em.persist(newPizza);
+		 	}
+		 	catch(Exception e)
+		 	{
+		 		throw new DaoException();
+		 	}
+		
+
+
 		return true;
 	}
 
-	@Override
 	public boolean updatePizza(String codePizza, Pizza updatePizza) throws DaoException {
-		EntityManager em = emfactory.createEntityManager();
+		Pizza pizza = null;
 		try{
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
 		TypedQuery<Pizza> namedQuery = em.createNamedQuery("pizza.findPizza", Pizza.class).setParameter("code", codePizza);
 		Pizza singleResult = namedQuery.getSingleResult();
 		singleResult.setCode(updatePizza.getCode());
 		singleResult.setCategorie(updatePizza.getCategorie());
 		singleResult.setNom(updatePizza.getNom());
 		singleResult.setPrix(updatePizza.getPrix());
-		transaction.commit();
 		}
 		catch(NoResultException e)
 		{
 			throw new DaoException();
 		}
-		finally
-		{
-			em.close();
-		}
-		
+
 		return true;
 	}
 
-	@Override
 	public boolean deletePizza(String codePizza) throws DaoException {
-		EntityManager em = emfactory.createEntityManager();
 		try{
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
+			Pizza pizza = em.createNamedQuery("pizza.findPizza", Pizza.class).setParameter("code", codePizza).getSingleResult();
+			
+			em.remove(pizza);
+			
 
-
-		transaction.commit();
 		}
 		catch(NoResultException e)
 		{
 			throw new DaoException();
 		}
-		finally
-		{
-			em.close();
-		}
+
 		
 		return true;
 	}
 
-	@Override
 	public void saveAllPizzas(List<Pizza> listPizzas, int nb) throws DaoException
 	{
-		EntityManager em = emfactory.createEntityManager();
 		listPizzas.sort(Comparator.comparing(Pizza::getCode));
 		ListUtils.partition(listPizzas, nb).forEach(list->{em.getTransaction().begin();
 		list.forEach(em::persist);
