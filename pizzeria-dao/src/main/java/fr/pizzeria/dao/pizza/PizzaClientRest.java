@@ -8,6 +8,7 @@ import java.util.List;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
@@ -18,6 +19,8 @@ import fr.pizzeria.model.Pizza;
  */
 public class PizzaClientRest implements IPizzaDao {
 
+	
+	
 	/* (non-Javadoc)
 	 * @see fr.pizzeria.dao.pizza.IPizzaDao#findAllPizzas()
 	 */
@@ -28,6 +31,7 @@ public class PizzaClientRest implements IPizzaDao {
 		WebTarget target = client.target("http://localhost:8080");
 
 		Invocation.Builder builder = target.path("api").path("/rest/pizzas").request();
+		Response reponse=builder.get();
 		return null;
 	}
 
@@ -36,7 +40,9 @@ public class PizzaClientRest implements IPizzaDao {
 	 */
 	@Override
 	public boolean savePizza(Pizza newPizza) throws DaoException {
-		// TODO Auto-generated method stub
+		
+		
+		
 		return false;
 	}
 

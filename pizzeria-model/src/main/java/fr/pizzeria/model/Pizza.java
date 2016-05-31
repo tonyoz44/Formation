@@ -29,7 +29,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="pizza.findAll", query="select p from Pizza p"),
-	@NamedQuery(name="pizza.findPizza", query="select p from Pizza p where p.code=:code")
+	@NamedQuery(name="pizza.findPizza", query="select p from Pizza p where p.code=:code"),
 })
 public class Pizza {
 
