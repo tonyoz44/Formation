@@ -24,6 +24,7 @@ public class PizzaAdminApp {
 		ResourceBundle bundle = ResourceBundle.getBundle("application");
 		String confString = bundle.getString("dao.impl");
 		Integer daoImplConf = Integer.valueOf(confString);
+		EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("pizzeria-console");
 				
 		switch (daoImplConf) {
 		case 0:
@@ -35,12 +36,13 @@ public class PizzaAdminApp {
 			lancerApplication(new PizzaDaoFichierImpl());
 			break;
 		case 2:
+			
 			System.out.println("DAO Jdbc");
-		
+			lancerApplication(new PizzaDaoJdbc(emf));
 		case 3:
 			java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 			System.out.println("JPA ");
-			EntityManagerFactory emf = javax.persistence.Persistence.createEntityManagerFactory("pizzeria-console");
+			
 			lancerApplication(new PizzaDaoJpa(emf));
 			break;
 		default:

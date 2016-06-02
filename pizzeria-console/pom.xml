@@ -74,10 +74,14 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+		</dependency>
 	</dependencies>
 
 	<profiles>
@@ -87,7 +91,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<dao.impl>0</dao.impl>
+				<dao.impl>dao-memoire-config.xml</dao.impl>
 			</properties>
 		</profile>
 		<profile>

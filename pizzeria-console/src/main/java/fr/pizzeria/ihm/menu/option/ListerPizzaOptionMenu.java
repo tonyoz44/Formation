@@ -1,16 +1,20 @@
 package fr.pizzeria.ihm.menu.option;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import fr.pizzeria.dao.pizza.IPizzaDao;
+import fr.pizzeria.dao.pizza.JdbcTemplateDao;
 import fr.pizzeria.exception.DaoException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class ListerPizzaOptionMenu extends AbstractOptionMenu {
 
 	private static final String LISTER_PIZZAS_LIBELLE_MENU = "Lister Pizzas";
-
-	
 	
 	public ListerPizzaOptionMenu(IPizzaDao pizzaDao) {
 		super(LISTER_PIZZAS_LIBELLE_MENU, pizzaDao);
@@ -18,6 +22,7 @@ public class ListerPizzaOptionMenu extends AbstractOptionMenu {
 
 	@Override
 	public boolean execute() {
+
 		System.out.println("Lister Pizza Menu");
 		List<Pizza> pizzas;
 		try {

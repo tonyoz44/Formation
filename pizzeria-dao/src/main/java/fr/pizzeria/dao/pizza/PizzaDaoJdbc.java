@@ -22,13 +22,14 @@ import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaDaoJdbc implements IPizzaDao {
-	private  final String DRIVER = "com.mysql.jdbc.Driver";
+	private   String DRIVER;
 	private EntityManagerFactory emf;
 	private  List<Pizza> pizzas = new ArrayList<Pizza>();
+	private Connection connection;
 	private  final String REPERTOIRE_DATA = "src/main/resources/data";
 	private  Connection connection() throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/pizzeria", "anthony", "admin");
-		connection.setAutoCommit(false);
+	
+		
 		return connection;
 
 	}
@@ -36,6 +37,18 @@ public class PizzaDaoJdbc implements IPizzaDao {
 	/**
 	 * @param emf
 	 */
+	public PizzaDaoJdbc(String url, String driver,String user, String password ) {
+		DRIVER = driver;
+		try {
+			connection= DriverManager.getConnection(url, user, password);
+			connection.setAutoCommit(false);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public PizzaDaoJdbc(EntityManagerFactory emf) {
 		this.emf = emf;
 	}

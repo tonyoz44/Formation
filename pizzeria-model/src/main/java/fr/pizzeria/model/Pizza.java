@@ -51,6 +51,51 @@ public class Pizza {
 
 
 	/**
+	 * @param id the id to set
+	 */
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
+
+
+
+
+
+
+
+	/**
+	 * @param nbPizzas the nbPizzas to set
+	 */
+	public static void setNbPizzas(int nbPizzas) {
+		Pizza.nbPizzas = nbPizzas;
+	}
+
+
+
+
+
+
+
+
+
+	/**
+	 * @param listesCommande the listesCommande to set
+	 */
+	public void setListesCommande(Set<Commande> listesCommande) {
+		this.listesCommande = listesCommande;
+	}
+
+
+
+
+
+
+
+
+
+	/**
 	 * @param url_image
 	 * @param code
 	 * @param nom
