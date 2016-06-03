@@ -7,6 +7,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import fr.pizzeria.model.Client;
 
 /**
@@ -15,13 +17,14 @@ import fr.pizzeria.model.Client;
  */
 public class ClientDaoJPa implements IClientDao {
 
+	@Autowired
 	EntityManagerFactory emf;
 
 	/**
 	 * @param emf
 	 */
-	public ClientDaoJPa(EntityManagerFactory emf) {
-		this.emf = emf;
+	public ClientDaoJPa() {
+		
 	}
 
 	@Override

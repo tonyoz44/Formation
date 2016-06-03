@@ -13,6 +13,8 @@ import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.apache.commons.collections4.ListUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
@@ -21,12 +23,14 @@ import fr.pizzeria.model.Pizza;
  * @author ETY
  *
  */
+@Component
 public class PizzaDaoJpa implements IPizzaDao {
 	
+	@Autowired
 	EntityManagerFactory emfactory;
 	
-	public PizzaDaoJpa(EntityManagerFactory emf) {
-		emfactory=emf;
+	public PizzaDaoJpa() {
+		
 	}
 
 	@Override                                                                                     

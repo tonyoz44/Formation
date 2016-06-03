@@ -16,7 +16,7 @@ public class DaoProducer {
 	
 	DaoFactory getDaoJpaFactory(EntityManagerFactory emf )
 	{
-		return new GenericFactoryImpl(new PizzaDaoJpa(emf), new ClientDaoJPa(emf),null,null);
+		return new GenericFactoryImpl(new PizzaDaoJpa(), new ClientDaoJPa(),null,null);
 		
 	}
 

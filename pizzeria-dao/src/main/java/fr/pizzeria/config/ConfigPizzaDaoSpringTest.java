@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.pizzeria.dao.pizza;
+package fr.pizzeria.config;
 
 import javax.sql.DataSource;
 
@@ -15,6 +15,9 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import fr.pizzeria.dao.pizza.IPizzaDao;
+import fr.pizzeria.dao.pizza.SpringPizzaDaoJpa;
 
 /**
  * @author ETY
