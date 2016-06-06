@@ -43,7 +43,7 @@ public class PizzaAdminApp {
 			java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
 			System.out.println("JPA ");
 			
-			lancerApplication(new PizzaDaoJpa(emf));
+			lancerApplication(new PizzaDaoJpa());
 			break;
 		default:
 			System.err.println("Aucune configuration Dao trouvée. Le fichier application.properties est-il correctement configuré ?");

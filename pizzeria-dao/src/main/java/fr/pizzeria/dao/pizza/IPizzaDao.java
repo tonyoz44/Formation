@@ -5,6 +5,7 @@ import java.util.List;
 import fr.pizzeria.exception.DaoException;
 import fr.pizzeria.model.Pizza;
 
+
 public interface IPizzaDao  {
 	
 	static IPizzaDao pizzadao=new PizzaDaoImpl();

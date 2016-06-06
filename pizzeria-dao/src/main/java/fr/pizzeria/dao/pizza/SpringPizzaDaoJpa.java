@@ -26,7 +26,7 @@ import fr.pizzeria.model.Pizza;
  * @author ETY
  *
  */
-
+@Repository
 public class SpringPizzaDaoJpa implements IPizzaDao {
 	
 
@@ -36,7 +36,7 @@ public class SpringPizzaDaoJpa implements IPizzaDao {
 	@Autowired private BatchPizzaDaoJpaSpring batchPizzaDaoJpaSpring;
 	
 	@Override  
-
+@Transactional
 	public List<Pizza> findAllPizzas() throws DaoException {                                      
 	                                     
 		TypedQuery<Pizza> query = em.createQuery("select p from Pizza p", Pizza.class);

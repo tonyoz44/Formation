@@ -48,7 +48,7 @@
     <profile>
       <id>dev</id>
       <properties>
-        <dao.impl>0</dao.impl>
+        <dao.impl>dao-memoire-config.xml</dao.impl>
       </properties>
     </profile>
     <profile>
